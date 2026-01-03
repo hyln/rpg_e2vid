@@ -1,5 +1,27 @@
 # High Speed and High Dynamic Range Video with an Event Camera
 
+## use
+
+```bash
+conda create -n E2VID python=3.10
+conda activate E2VID
+python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+python -m pip install pandas opencv-python scipy
+wget "http://rpg.ifi.uzh.ch/data/E2VID/datasets/ECD_IJRR17/dynamic_6dof.zip" -c -O data/dynamic_6dof.zip
+# weight
+wget "http://rpg.ifi.uzh.ch/data/E2VID/models/E2VID_lightweight.pth.tar" -c -O pretrained/E2VID_lightweight.pth.tar
+
+python run_reconstruction.py \
+  -c pretrained/E2VID_lightweight.pth.tar \
+  -i data/dynamic_6dof.zip \
+  --auto_hdr \
+  --display \
+  --show_events
+```
+
+
+
+
 [![High Speed and High Dynamic Range Video with an Event Camera](http://rpg.ifi.uzh.ch/E2VID/video_thumbnail.png)](https://youtu.be/eomALySSGVU)
 
 This is the code for the paper **High Speed and High Dynamic Range Video with an Event Camera** by [Henri Rebecq](http://henri.rebecq.fr), Rene Ranftl, [Vladlen Koltun](http://vladlen.info/) and [Davide Scaramuzza](http://rpg.ifi.uzh.ch/people_scaramuzza.html):
